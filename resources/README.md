@@ -9,6 +9,10 @@
 ## Windows App Template
 - https://github.com/Windows-XAML/Template10
 
+## Training Data
+- https://github.com/ananducsd/opt-data-minin
+- http://www.ai.mit.edu/projects/jmlr/papers/volume5/lewis04a/lyrl2004_rcv1v2_README.htm
+
 ## Data Processsing Algos 
 - RNN 
 - RBM 
