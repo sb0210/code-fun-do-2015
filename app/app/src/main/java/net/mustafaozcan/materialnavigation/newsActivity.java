@@ -48,7 +48,7 @@ public class newsActivity extends AppCompatActivity {
 
         ViewGroup tv2 = (ViewGroup) findViewById(R.id.textViewData);
 
-        for(int i=0;i<numberOfDataPoints;++i)
+        for(int i=numberOfDataPoints-1;i>=0;--i)
         {
 
             LayoutInflater vi = (LayoutInflater) getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);

@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Initial tab count
         setTabs(4);
-        mNavigationView.setCheckedItem(R.id.navigation_item_1);
+        mNavigationView.setCheckedItem(R.id.navigation_item_4);
 
     }
 
@@ -105,15 +105,15 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(MenuItem menuItem) {
                 menuItem.setChecked(true);
                 switch (menuItem.getItemId()) {
-                    case R.id.navigation_item_1:
-                        mCurrentSelectedPosition = 0;
-                        break;
-                    case R.id.navigation_item_2:
-                        mCurrentSelectedPosition = 1;
-                        break;
-                    case R.id.navigation_item_3:
-                        mCurrentSelectedPosition = 2;
-                        break;
+//                    case R.id.navigation_item_1:
+//                        mCurrentSelectedPosition = 0;
+//                        break;
+//                    case R.id.navigation_item_2:
+//                        mCurrentSelectedPosition = 1;
+//                        break;
+//                    case R.id.navigation_item_3:
+//                        mCurrentSelectedPosition = 2;
+//                        break;
                     case R.id.navigation_item_4:
                         mCurrentSelectedPosition = 3;
                         break;
@@ -188,33 +188,36 @@ public class MainActivity extends AppCompatActivity {
         mDrawerToggle.onConfigurationChanged(newConfig);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        MenuItem searchItem = menu.findItem(R.id.action_search);
 
-        if (searchItem != null) {
-            SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+    // related to search
 
-            // use this method for search process
-            searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-                @Override
-                public boolean onQueryTextSubmit(String query) {
-                    // use this method when query submitted
-                    Toast.makeText(MainActivity.this, query, Toast.LENGTH_SHORT).show();
-                    return false;
-                }
-
-                @Override
-                public boolean onQueryTextChange(String newText) {
-                    // use this method for auto complete search process
-                    return false;
-                }
-            });
-
-        }
-        return super.onCreateOptionsMenu(menu);
-    }
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        getMenuInflater().inflate(R.menu.menu_main, menu);
+////        MenuItem searchItem = menu.findItem(R.id.action_search);
+//
+//        if (searchItem != null) {
+//            SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+//
+//            // use this method for search process
+//            searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+//                @Override
+//                public boolean onQueryTextSubmit(String query) {
+//                    // use this method when query submitted
+//                    Toast.makeText(MainActivity.this, query, Toast.LENGTH_SHORT).show();
+//                    return false;
+//                }
+//
+//                @Override
+//                public boolean onQueryTextChange(String newText) {
+//                    // use this method for auto complete search process
+//                    return false;
+//                }
+//            });
+//
+//        }
+//        return super.onCreateOptionsMenu(menu);
+//    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

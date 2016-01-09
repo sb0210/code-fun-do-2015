@@ -132,10 +132,15 @@ public class ContentFragment extends Fragment {
                     "UC Browser",
                     "Android Folder",
                     "VLC Player",
-                    "Cold War"
+                    "Futher below added to test scrolling",
+                    "Cold War",
+                    "Cold War",
+                    "Cold War",
+                    "Cold War",
+                    "Cold War",
             };
 
-            ArrayAdapter adapter = new ArrayAdapter<String>(getContext(),R.layout.activity_listview,Tarray);
+            ArrayAdapter adapter = new ArrayAdapter<String>(getContext(),R.layout.activity_listview, Tarray);
 
             ListView listview = (ListView) view.findViewById(R.id.listView);
             listview.setAdapter(adapter);
