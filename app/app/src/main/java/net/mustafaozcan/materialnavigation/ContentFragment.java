@@ -32,8 +32,33 @@ import android.app.ListActivity;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.io.BufferedInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+
 public class ContentFragment extends Fragment {
     // Store instance variables
+
+    private String readStream(InputStream is) {
+        try {
+            ByteArrayOutputStream bo = new ByteArrayOutputStream();
+            int i = is.read();
+            while(i != -1) {
+                bo.write(i);
+                i = is.read();
+            }
+            return bo.toString();
+        } catch (IOException e) {
+            return "";
+        }
+    }
 
     // newInstance constructor for creating fragment with arguments
     public static ContentFragment newInstance(int pageIndex) {
@@ -44,6 +69,9 @@ public class ContentFragment extends Fragment {
         return contentFragment;
     }
 
+    int numberOfArticles= 2 ;
+    String[] Tarray = new String[numberOfArticles];
+
     // Inflate the view for the fragment based on layout XML
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -53,23 +81,61 @@ public class ContentFragment extends Fragment {
         if (bundle != null) {
             int pageIndex = bundle.getInt("pageIndex", 0);
 
-            TextView tvSection = (TextView) view.findViewById(R.id.tvSection);
-            tvSection.setText(getString(R.string.page) + " " + String.valueOf(pageIndex + 1));
+//            TextView tvSection = (TextView) view.findViewById(R.id.tvSection);
+//            tvSection.setText(getString(R.string.page) + " " + String.valueOf(pageIndex + 1));
 
+
+            URL url = null;
+            HttpURLConnection urlConnection = null;
+            JSONObject obj = null;
+//            int numberOfArticles = 0;
+
+            try
+            {
+                url = new URL("https://enigmatic-coast-8748.herokuapp.com/newsFeed/"); // change the url here
+            }
+            catch (MalformedURLException e)
+            {
+                // handle this later
+            }
+
+            try
+            {
+                urlConnection = (HttpURLConnection) url.openConnection();
+                InputStream in = new BufferedInputStream(urlConnection.getInputStream());
+                obj = new JSONObject(readStream(in));
+
+                JSONArray titleArray = obj.getJSONArray("titles");
+
+                for (int i = 0; i < titleArray.length(); i++)
+                {
+                    Tarray[i] = titleArray.getString(i);
+                }
+
+//              numberOfDataPoints = Integer.parseInt(obj.getString("titles"));
+            }
+            catch(Exception e)
+            {
+                // handle this later
+            }
+            finally
+            {
+                urlConnection.disconnect();
+            }
 
             // Get String here from request
-            String[] itemname ={
-                    "Safari",
-                    "Camera",
-                    "Global",
-                    "FireFox",
-                    "UC Browser",
-                    "Android Folder",
-                    "VLC Player",
-                    "Cold War"
-            };
+//            final String[] itemname ={ // needs to be final to be used within the event handler
+//                    "Safari",
+//                    "Camera",
+//                    "Global",
+//                    "FireFox",
+//                    "UC Browser",
+//                    "Android Folder",
+//                    "VLC Player",
+//                    "Cold War"
+//            };
 
-            ArrayAdapter adapter = new ArrayAdapter<String>(getContext(),R.layout.activity_listview,itemname);
+            ArrayAdapter adapter = new ArrayAdapter<String>(getContext(),R.layout.activity_listview,Tarray);
 
             ListView listview = (ListView) view.findViewById(R.id.listView);
             listview.setAdapter(adapter);
@@ -80,8 +146,8 @@ public class ContentFragment extends Fragment {
                     // your code is here on item click
                     String selval = ((TextView) view).getText().toString();
                     Intent intnt = new Intent(getContext(), newsActivity.class);
-                    intnt.putExtra("title", id);
-                    intnt.putExtra("name", position);
+                    intnt.putExtra("title", Tarray[(int)id]);
+//                    intnt.putExtra("name", position);
                     startActivity(intnt);
                 }
             });
