@@ -103,6 +103,16 @@ public class SlidingTabLayout extends HorizontalScrollView {
      * {@link #setSelectedIndicatorColors(int...)} to achieve
      * similar effects.
      */
+    @Override
+    public int getIndicatorColor(int position) {
+
+        final int [] colorArray = {
+            android.R.color.holo_green_dark,
+                    R.color.material_blue_grey_800,
+                    android.R.color.holo_red_dark,0xFF33B5E5};
+        return colorArray[position];
+    }
+
     public void setCustomTabColorizer(TabColorizer tabColorizer) {
         mTabStrip.setCustomTabColorizer(tabColorizer);
     }
@@ -188,6 +198,10 @@ public class SlidingTabLayout extends HorizontalScrollView {
         return textView;
     }
 
+    final String[] titleArray ={ // needs to be final to be used within the event handler
+            "Politics","Sci-Tech","Sports","Entertainment"
+    };
+
     private void populateTabStrip() {
         final PagerAdapter adapter = mViewPager.getAdapter();
         final View.OnClickListener tabClickListener = new TabClickListener();
@@ -209,7 +223,7 @@ public class SlidingTabLayout extends HorizontalScrollView {
 
             if (tabTitleView == null && TextView.class.isInstance(tabView)) {
                 tabTitleView = (TextView) tabView;
-                tabTitleView.setText(adapter.getPageTitle(i));
+                tabTitleView.setText(titleArray[i]);
                 tabView.setOnClickListener(tabClickListener);
             }
 
