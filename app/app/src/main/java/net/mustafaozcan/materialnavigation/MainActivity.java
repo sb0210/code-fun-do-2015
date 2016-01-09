@@ -31,7 +31,20 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.Toast;
+
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.io.UnsupportedEncodingException;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     private ActionBarDrawerToggle mDrawerToggle;
@@ -49,7 +62,6 @@ public class MainActivity extends AppCompatActivity {
         // Initial tab count
         setTabs(4);
         mNavigationView.setCheckedItem(R.id.navigation_item_4);
-
     }
 
     private void setUpNavigationDrawer() {

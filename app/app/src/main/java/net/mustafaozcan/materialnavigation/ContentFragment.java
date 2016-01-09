@@ -18,9 +18,11 @@ package net.mustafaozcan.materialnavigation;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
 import android.widget.TextView;
 
 public class ContentFragment extends Fragment {
@@ -46,6 +48,18 @@ public class ContentFragment extends Fragment {
 
             TextView tvSection = (TextView) view.findViewById(R.id.tvSection);
             tvSection.setText(getString(R.string.page) + " " + String.valueOf(pageIndex + 1));
+
+            if(pageIndex == 0)
+            {
+                WebView browser = (WebView) view.findViewById(R.id.webview);
+                browser.loadUrl("http://meetshah1995.github.io/academics");
+            }
+            else
+            {
+                WebView browser = (WebView) view.findViewById(R.id.webview);
+                browser.loadUrl("http://meetshah1995.github.io/blog");
+            }
+
         }
         return view;
 

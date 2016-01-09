@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/home/meetshah1995/misc_code/codefundo/app/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.0/jars/libs/internal_impl-23.0.0.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="8bd336eeae661e8311330284897ee07f8ebaa297">
+        <dex dex="/home/meetshah1995/misc_code/codefundo/app/app/build/intermediates/pre-dexed/debug/internal_impl-23.0.0-994b33036bfb2e075f817f5ac4b6da9c00ad510f.jar" />
+    </item>
+    <item
+        jar="/home/meetshah1995/Android/Sdk/extras/android/m2repository/com/android/support/support-annotations/23.0.0/support-annotations-23.0.0.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="990e7f98a7bad86a40b1f0bcfeb039023afd0839">
+        <dex dex="/home/meetshah1995/misc_code/codefundo/app/app/build/intermediates/pre-dexed/debug/support-annotations-23.0.0-1bb7c7b5ab93eafe4921fb5fba822b24eaaae7fd.jar" />
+    </item>
+    <item
+        jar="/home/meetshah1995/misc_code/codefundo/app/app/build/intermediates/exploded-aar/com.android.support/design/23.0.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="8a5238e4bdcd6568b82db669d41817de670586b8">
+        <dex dex="/home/meetshah1995/misc_code/codefundo/app/app/build/intermediates/pre-dexed/debug/classes-2238a9aaa0ea4ac3d0d31cacb2b3a0071d3d7b7d.jar" />
+    </item>
+    <item
+        jar="/home/meetshah1995/misc_code/codefundo/app/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/23.0.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="1ccbc26be2c465c622a48310e8092241b01abe80">
+        <dex dex="/home/meetshah1995/misc_code/codefundo/app/app/build/intermediates/pre-dexed/debug/classes-ed449d76813d7711508cae0060b25223fd9645ff.jar" />
+    </item>
+    <item
+        jar="/home/meetshah1995/misc_code/codefundo/app/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="8413c27b45b7fe61dca4a98159f65e2cee215f5a">
+        <dex dex="/home/meetshah1995/misc_code/codefundo/app/app/build/intermediates/pre-dexed/debug/classes-00d8f386a87cf02174219665d02ca695053a3bf0.jar" />
+    </item>
+    <item
+        jar="/home/meetshah1995/misc_code/codefundo/app/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="4fcf0b1879f8caf497c073e1432d398e9e2988c1">
+        <dex dex="/home/meetshah1995/misc_code/codefundo/app/app/build/intermediates/pre-dexed/debug/classes-1c5affa7b9e0f28b0ed033a3a7c8f32874f58394.jar" />
+    </item>
+
+</items>
