@@ -69,7 +69,7 @@ public class ContentFragment extends Fragment {
         return contentFragment;
     }
 
-    int numberOfArticles= 2 ;
+    int numberOfArticles = 10;
     String[] Tarray = new String[numberOfArticles];
 
     // Inflate the view for the fragment based on layout XML
@@ -85,55 +85,55 @@ public class ContentFragment extends Fragment {
 //            tvSection.setText(getString(R.string.page) + " " + String.valueOf(pageIndex + 1));
 
 
-            URL url = null;
-            HttpURLConnection urlConnection = null;
-            JSONObject obj = null;
-//            int numberOfArticles = 0;
-
-            try
-            {
-                url = new URL("https://enigmatic-coast-8748.herokuapp.com/newsFeed/"); // change the url here
-            }
-            catch (MalformedURLException e)
-            {
-                // handle this later
-            }
-
-            try
-            {
-                urlConnection = (HttpURLConnection) url.openConnection();
-                InputStream in = new BufferedInputStream(urlConnection.getInputStream());
-                obj = new JSONObject(readStream(in));
-
-                JSONArray titleArray = obj.getJSONArray("titles");
-
-                for (int i = 0; i < titleArray.length(); i++)
-                {
-                    Tarray[i] = titleArray.getString(i);
-                }
-
-//              numberOfDataPoints = Integer.parseInt(obj.getString("titles"));
-            }
-            catch(Exception e)
-            {
-                // handle this later
-            }
-            finally
-            {
-                urlConnection.disconnect();
-            }
+//            URL url = null;
+//            HttpURLConnection urlConnection = null;
+//            JSONObject obj = null;
+////            int numberOfArticles = 0;
+//
+//            try
+//            {
+//                url = new URL("https://enigmatic-coast-8748.herokuapp.com/newsFeed/"); // change the url here
+//            }
+//            catch (MalformedURLException e)
+//            {
+//                // handle this later
+//            }
+//
+//            try
+//            {
+//                urlConnection = (HttpURLConnection) url.openConnection();
+//                InputStream in = new BufferedInputStream(urlConnection.getInputStream());
+//                obj = new JSONObject(readStream(in));
+//
+//                JSONArray titleArray = obj.getJSONArray("titles");
+//
+//                for (int i = 0; i < titleArray.length(); i++)
+//                {
+//                    Tarray[i] = titleArray.getString(i);
+//                }
+//
+////              numberOfDataPoints = Integer.parseInt(obj.getString("titles"));
+//            }
+//            catch(Exception e)
+//            {
+//                // handle this later
+//            }
+//            finally
+//            {
+//                urlConnection.disconnect();
+//            }
 
             // Get String here from request
-//            final String[] itemname ={ // needs to be final to be used within the event handler
-//                    "Safari",
-//                    "Camera",
-//                    "Global",
-//                    "FireFox",
-//                    "UC Browser",
-//                    "Android Folder",
-//                    "VLC Player",
-//                    "Cold War"
-//            };
+            final String[] Tarray ={ // needs to be final to be used within the event handler
+                    "Safari",
+                    "Camera",
+                    "Global",
+                    "FireFox",
+                    "UC Browser",
+                    "Android Folder",
+                    "VLC Player",
+                    "Cold War"
+            };
 
             ArrayAdapter adapter = new ArrayAdapter<String>(getContext(),R.layout.activity_listview,Tarray);
 

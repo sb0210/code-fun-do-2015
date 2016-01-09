@@ -41,38 +41,15 @@ public class newsActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         String title = intent.getStringExtra("title");
-        int numberOfDataPoints = 0;
+        int numberOfDataPoints = 10;
 
         TextView tv = (TextView) findViewById(R.id.textViewTitle);
         tv.setText(title);
 
         ViewGroup tv2 = (ViewGroup) findViewById(R.id.textViewData);
 
-        URL url = null;
-        HttpURLConnection urlConnection = null;
-        JSONObject obj = null;
-
-        try {
-            url = new URL("https://peaceful-scrubland-7586.herokuapp.com/newsFeed/"); // change the url here
-        } catch (MalformedURLException e){
-            // handle this later
-        }
-        try {
-
-            urlConnection = (HttpURLConnection) url.openConnection();
-            InputStream in = new BufferedInputStream(urlConnection.getInputStream());
-            obj = new JSONObject(readStream(in));
-//            numberOfDataPoints = Integer.parseInt(obj.getString("numArticles"));
-            numberOfDataPoints = 4;
-        } catch(Exception e) {
-            // handle this later
-        }
-        finally {
-            urlConnection.disconnect();
-        }
-
-
-        for(int i=numberOfDataPoints-1;i>=0;--i) {
+        for(int i=0;i<numberOfDataPoints;++i)
+        {
 
             LayoutInflater vi = (LayoutInflater) getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             View v = vi.inflate(R.layout.template_layout, null);
@@ -83,7 +60,7 @@ public class newsActivity extends AppCompatActivity {
             TextView textView2 = (TextView) v.findViewById(R.id.textViewArticleSummary);
 
             textView1.setText("your text" + i); // source of article
-            textView2.setText("your text" + i); // article summary
+            textView2.setText("your text" + i*2); // article summary
 
             // insert into main view
             ViewGroup insertPoint = tv2;
