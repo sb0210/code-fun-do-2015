@@ -16,6 +16,7 @@ package net.mustafaozcan.materialnavigation;
  * limitations under the License.
  */
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -23,7 +24,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
+import android.widget.AdapterView;
+import android.widget.ListView;
+import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
+import android.app.ListActivity;
+import android.os.Bundle;
+import android.widget.ArrayAdapter;
 
 public class ContentFragment extends Fragment {
     // Store instance variables
@@ -49,16 +56,46 @@ public class ContentFragment extends Fragment {
             TextView tvSection = (TextView) view.findViewById(R.id.tvSection);
             tvSection.setText(getString(R.string.page) + " " + String.valueOf(pageIndex + 1));
 
-            if(pageIndex == 0)
-            {
-                WebView browser = (WebView) view.findViewById(R.id.webview);
-                browser.loadUrl("http://meetshah1995.github.io/academics");
-            }
-            else
-            {
-                WebView browser = (WebView) view.findViewById(R.id.webview);
-                browser.loadUrl("http://meetshah1995.github.io/blog");
-            }
+
+            // Get String here from request
+            String[] itemname ={
+                    "Safari",
+                    "Camera",
+                    "Global",
+                    "FireFox",
+                    "UC Browser",
+                    "Android Folder",
+                    "VLC Player",
+                    "Cold War"
+            };
+
+            ArrayAdapter adapter = new ArrayAdapter<String>(getContext(),R.layout.activity_listview,itemname);
+
+            ListView listview = (ListView) view.findViewById(R.id.listView);
+            listview.setAdapter(adapter);
+
+            listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                    // your code is here on item click
+                    String selval = ((TextView) view).getText().toString();
+                    Intent intnt = new Intent(getContext(), newsActivity.class);
+                    intnt.putExtra("title", id);
+                    intnt.putExtra("name", position);
+                    startActivity(intnt);
+                }
+            });
+
+//            if(pageIndex == 0)
+//            {
+//                WebView browser = (WebView) view.findViewById(R.id.webview);
+//                browser.loadUrl("http://meetshah1995.github.io/academics");
+//            }
+//            else
+//            {
+//                WebView browser = (WebView) view.findViewById(R.id.webview);
+//                browser.loadUrl("http://meetshah1995.github.io/blog");
+//            }
 
         }
         return view;
