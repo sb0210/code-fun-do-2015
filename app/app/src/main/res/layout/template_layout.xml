@@ -19,7 +19,8 @@
             android:textStyle="bold"
             android:id="@+id/textViewArticleSource"
             android:layout_weight="0.06"
-            android:textColor="#000000"/>
+            android:textColor="#FFFFFF"
+            android:background="#FF33B5E5"/>
 
 
     </android.support.v7.widget.CardView>

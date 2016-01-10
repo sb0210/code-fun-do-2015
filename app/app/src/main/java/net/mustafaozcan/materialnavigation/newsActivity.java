@@ -49,6 +49,7 @@ public class newsActivity extends AppCompatActivity {
 
         LayoutInflater vi_ = (LayoutInflater) getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View v_ = vi_.inflate(R.layout.graph_layout, null);
+
         WebView webview = (WebView) v_.findViewById(R.id.webView);
         webview.setVerticalScrollBarEnabled(true);
         webview.setHorizontalScrollBarEnabled(true);
@@ -58,8 +59,8 @@ public class newsActivity extends AppCompatActivity {
         Float neg = 1 - pos;
         String myurl = "http://www.cse.iitb.ac.in/~siddharth.bulia/codefundo2016/pie.php?pos=" + Float.toString(pos) + "&neg=" +  Float.toString(neg);
         webview.loadUrl(myurl);
-        ViewGroup insertPoint_ = tv2;
-        insertPoint_.addView(v_, 0, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.FILL_PARENT));
+        ViewGroup insertPoint__ = tv2;
+        insertPoint__.addView(v_, 0, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.FILL_PARENT));
 
         for(int i=noOfpublicOpinions-1;i>=0;--i)
         {
@@ -81,6 +82,12 @@ public class newsActivity extends AppCompatActivity {
 //        View v = vi.inflate(R.layout.reddit_title, null);
 //        ViewGroup insertPoint = tv2;
 //        insertPoint.addView(v, 0, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.FILL_PARENT));
+
+        LayoutInflater vi__ = (LayoutInflater) getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View v__ = vi__.inflate(R.layout.reddit_title, null);
+
+        ViewGroup insertPoint_ = tv2;
+        insertPoint_.addView(v__, 0, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.FILL_PARENT));
 
         for(int i=numberOfDataPoints-1;i>=0;--i)
         {
