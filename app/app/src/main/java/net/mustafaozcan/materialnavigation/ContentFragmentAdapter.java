@@ -46,7 +46,17 @@ class ContentFragmentAdapter extends FragmentPagerAdapter {
     // Returns the page title for the top indicator
     @Override
     public CharSequence getPageTitle(int position) {
-        return c.getString(R.string.tab) + " " + String.valueOf(position + 1);
+        CharSequence cs = null;
+        if (position == 0)
+            cs = c.getString(R.string.menu0);
+        else if (position == 1)
+            cs = c.getString(R.string.menu1);
+        else if (position == 2)
+            cs = c.getString(R.string.menu2);
+        else if (position == 3)
+            cs = c.getString(R.string.menu3);
+
+        return cs;
     }
 
 }

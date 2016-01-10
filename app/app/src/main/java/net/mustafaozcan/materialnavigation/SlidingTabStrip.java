@@ -37,7 +37,7 @@ class SlidingTabStrip extends LinearLayout {
     private float mSelectionOffset;
     private SlidingTabLayout.TabColorizer mCustomTabColorizer;
     private final SimpleTabColorizer mDefaultTabColorizer;
-
+    public int [] colorArray = {android.R.color.holo_green_dark,0xFF33B5E5, R.color.material_blue_grey_800, android.R.color.holo_red_dark };
     SlidingTabStrip(Context context) {
         this(context, null);
     }
@@ -55,7 +55,7 @@ class SlidingTabStrip extends LinearLayout {
         int mDefaultBottomBorderColor = setColorAlpha(themeForegroundColor);
 
         mDefaultTabColorizer = new SimpleTabColorizer();
-        mDefaultTabColorizer.setIndicatorColors(DEFAULT_SELECTED_INDICATOR_COLOR);
+        mDefaultTabColorizer.setIndicatorColors(colorArray);
 
         mBottomBorderThickness = (int) (DEFAULT_BOTTOM_BORDER_THICKNESS_DIPS * density);
         mBottomBorderPaint = new Paint();
@@ -151,8 +151,9 @@ class SlidingTabStrip extends LinearLayout {
             return mIndicatorColors[position % mIndicatorColors.length];
         }
 
-        void setIndicatorColors(int... colors) {
-            mIndicatorColors = colors;
-        }
+        void setIndicatorColors(int [] colors)
+            {
+                mIndicatorColors = colors;
+            }
     }
 }

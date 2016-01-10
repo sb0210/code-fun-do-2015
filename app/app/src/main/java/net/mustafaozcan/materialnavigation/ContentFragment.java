@@ -42,9 +42,27 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+
 
 public class ContentFragment extends Fragment {
     // Store instance variables
+
+    private static String[] convert(List<String[]> from)
+    {
+        ArrayList<String> list = new ArrayList<String>();
+        for (String[] strings : from) {
+            Collections.addAll(list, strings);
+        }
+        return list.toArray(new String[list.size()]);
+    }
 
     private String readStream(InputStream is) {
         try {
@@ -79,63 +97,93 @@ public class ContentFragment extends Fragment {
 
         Bundle bundle = this.getArguments();
         if (bundle != null) {
-            int pageIndex = bundle.getInt("pageIndex", 0);
+            final int pageIndex = bundle.getInt("pageIndex", 0);
 
-//            TextView tvSection = (TextView) view.findViewById(R.id.tvSection);
-//            tvSection.setText(getString(R.string.page) + " " + String.valueOf(pageIndex + 1));
+            InputStream inputStream = getResources().openRawResource(R.raw.gadget);
+            CSVFile csvFile = new CSVFile(inputStream);
+            final List technology = csvFile.read();
+
+            inputStream = getResources().openRawResource(R.raw.india);
+            csvFile = new CSVFile(inputStream);
+            final List india = csvFile.read();
+
+            inputStream = getResources().openRawResource(R.raw.news);
+            csvFile = new CSVFile(inputStream);
+            final List news = csvFile.read();
+
+            inputStream = getResources().openRawResource(R.raw.politics);
+            csvFile = new CSVFile(inputStream);
+            final List politics = csvFile.read();
+
+            final String [] gtitle = new String[technology.size()];
+            final String [] ptitle = new String[politics.size()];
+            final String [] ntitle = new String[news.size()];
+            final String [] ititle = new String[india.size()];
+
+            for(int i=0;i<technology.size();i++)
+            {
+                String [] str = new String[15];
+                str = (String[]) technology.get(i);
+                gtitle[i] = str[0];
+            }
+
+            for(int i=0;i<politics.size();i++)
+            {
+                String [] str = new String[15];
+                str = (String[]) politics.get(i);
+                ptitle[i] = str[0];
+            }
+
+            for(int i=0;i<news.size();i++)
+            {
+                String [] str = new String[15];
+                str = (String[]) news.get(i);
+                ntitle[i] = str[0];
+            }
+
+            for(int i=0;i<india.size();i++)
+            {
+                String [] str = new String[15];
+                str = (String[]) india.get(i);
+                ititle[i] = str[0];
+            }
 
 
-//            URL url = null;
-//            HttpURLConnection urlConnection = null;
-//            JSONObject obj = null;
-////            int numberOfArticles = 0;
-//
-//            try
-//            {
-//                url = new URL("https://enigmatic-coast-8748.herokuapp.com/newsFeed/"); // change the url here
-//            }
-//            catch (MalformedURLException e)
-//            {
-//                // handle this later
-//            }
-//
-//            try
-//            {
-//                urlConnection = (HttpURLConnection) url.openConnection();
-//                InputStream in = new BufferedInputStream(urlConnection.getInputStream());
-//                obj = new JSONObject(readStream(in));
-//
-//                JSONArray titleArray = obj.getJSONArray("titles");
-//
-//                for (int i = 0; i < titleArray.length(); i++)
-//                {
-//                    Tarray[i] = titleArray.getString(i);
-//                }
-//
-////              numberOfDataPoints = Integer.parseInt(obj.getString("titles"));
-//            }
-//            catch(Exception e)
-//            {
-//                // handle this later
-//            }
-//            finally
-//            {
-//                urlConnection.disconnect();
-//            }
 
             // Get String here from request
-            final String[] Tarray ={ // needs to be final to be used within the event handler
-                    "Safari",
-                    "Camera",
-                    "Global",
-                    "FireFox",
-                    "UC Browser",
-                    "Android Folder",
-                    "VLC Player",
-                    "Cold War"
-            };
+//            final String[] Tarray ={ // needs to be final to be used within the event handler
+//                    "Isis Guy kills mom on ISIS insistence",
+//                    "Isis Guy kills mom on ISIS insistence",
+//                    "Isis Guy kills mom on ISIS insistence",
+//                    "Camera",
+//                    "Global",
+//                    "FireFox",
+//                    "UC Browser",
+//                    "Android Folder",
+//                    "VLC Player",
+//                    "Futher below added to test scrolling",
+//                    "Cold War",
+//            };
 
-            ArrayAdapter adapter = new ArrayAdapter<String>(getContext(),R.layout.activity_listview,Tarray);
+            ArrayAdapter adapter = null;
+
+            if(pageIndex == 0)
+            {
+                adapter = new ArrayAdapter<String>(getContext(),R.layout.activity_listview, ptitle);
+            }
+            else if(pageIndex == 1)
+            {
+                adapter = new ArrayAdapter<String>(getContext(),R.layout.activity_listview, gtitle);
+            }
+            else if(pageIndex == 2)
+            {
+                adapter = new ArrayAdapter<String>(getContext(),R.layout.activity_listview,ntitle );
+            }
+            else
+            {
+                adapter = new ArrayAdapter<String>(getContext(),R.layout.activity_listview, ititle);
+            }
+
 
             ListView listview = (ListView) view.findViewById(R.id.listView);
             listview.setAdapter(adapter);
@@ -146,7 +194,29 @@ public class ContentFragment extends Fragment {
                     // your code is here on item click
                     String selval = ((TextView) view).getText().toString();
                     Intent intnt = new Intent(getContext(), newsActivity.class);
-                    intnt.putExtra("title", Tarray[(int)id]);
+                    if(pageIndex == 0)
+                    {
+                        intnt.putExtra("title", ptitle[(int)id]);
+                        intnt.putExtra("data", (String[])politics.get((int)id));
+                    }
+
+                    else if (pageIndex == 1)
+                    {
+                        intnt.putExtra("title", gtitle[(int)id]);
+                        intnt.putExtra("data", (String[]) technology.get((int)id));
+                    }
+
+                    else if(pageIndex == 2)
+                    {
+                        intnt.putExtra("title", ititle[(int)id]);
+                        intnt.putExtra("data", (String[])news.get((int) id));
+                    }
+
+                    else
+                    {
+                        intnt.putExtra("title", ititle[(int) id]);
+                        intnt.putExtra("data", (String[])india.get((int)id));
+                    }
 //                    intnt.putExtra("name", position);
                     startActivity(intnt);
                 }

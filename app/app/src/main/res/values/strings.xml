@@ -8,8 +8,9 @@
     <string name="page">Page</string>
     <string name="tab">Politics</string>
     <string name="search"></string>
-    <string name="menu1">Politics</string>
-    <string name="menu2">Sport</string>
-    <string name="menu3">World</string>
-    <string name="menu4">TechScience</string>
+    <string name="menu0">Politics</string>
+    <string name="menu1">Sport</string>
+    <string name="menu2">World</string>
+    <string name="menu3">TechScience</string>
+    <string name="title_activity_loader">loader</string>
 </resources>

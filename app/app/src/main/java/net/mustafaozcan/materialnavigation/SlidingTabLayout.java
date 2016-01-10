@@ -103,19 +103,10 @@ public class SlidingTabLayout extends HorizontalScrollView {
      * {@link #setSelectedIndicatorColors(int...)} to achieve
      * similar effects.
      */
-    @Override
-    public int getIndicatorColor(int position) {
-
-        final int [] colorArray = {
-            android.R.color.holo_green_dark,
-                    R.color.material_blue_grey_800,
-                    android.R.color.holo_red_dark,0xFF33B5E5};
-        return colorArray[position];
-    }
 
     public void setCustomTabColorizer(TabColorizer tabColorizer) {
         mTabStrip.setCustomTabColorizer(tabColorizer);
-    }
+     }
 
     public void setDistributeEvenly() {
         mDistributeEvenly = true;
@@ -125,8 +116,10 @@ public class SlidingTabLayout extends HorizontalScrollView {
      * Sets the colors to be used for indicating the selected tab. These colors are treated as a
      * circular array. Providing one color will mean that all tabs are indicated with the same color.
      */
-    public void setSelectedIndicatorColors(int... colors) {
-        mTabStrip.setSelectedIndicatorColors(colors);
+
+    public int [] colorArray = {0xFF33B5E5, android.R.color.holo_green_dark, R.color.material_blue_grey_800, android.R.color.holo_red_dark };
+    public void setSelectedIndicatorColors(int colorArray) {
+        mTabStrip.setSelectedIndicatorColors(colorArray);
     }
 
     /**
@@ -199,7 +192,7 @@ public class SlidingTabLayout extends HorizontalScrollView {
     }
 
     final String[] titleArray ={ // needs to be final to be used within the event handler
-            "Politics","Sci-Tech","Sports","Entertainment"
+            "Politics","Sci-Tech","World News","India"
     };
 
     private void populateTabStrip() {
@@ -355,4 +348,10 @@ public class SlidingTabLayout extends HorizontalScrollView {
     public void setTextColorSelected(int color) {
         this.textColorSelected = color;
     }
+
+//    public void setSelectedIndicatorColors(int position)
+//    {
+//        int [] colorArray = {0xFF33B5E5, android.R.color.holo_green_dark, R.color.material_blue_grey_800, android.R.color.holo_red_dark };
+//    }
 }
+
